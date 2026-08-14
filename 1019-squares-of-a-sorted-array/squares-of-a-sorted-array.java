@@ -6,13 +6,14 @@ class Solution {
       int[] res=new int[n];
       
       for(int i=n-1;i>=0;i--){
-       if(Math.abs(nums[left])>Math.abs(nums[right])){
-        res[i]=nums[i]*nums[i];
+       if(Math.abs(nums[left])>=Math.abs(nums[right])){
+        res[i]=nums[left]*nums[left];
+        left++;
        }
        else{
-        res[i]=nums[i]*nums[i];
+        res[i]=nums[right]*nums[right];
+        right--;
        }
-     Arrays.sort(res);
       }
       
     return res;
