@@ -2,6 +2,9 @@ class Solution {
     public void rotate(int[] nums, int k) {
         int n = nums.length;
         k = k % n;
+        if(k<0){
+            k+=n;
+        }
         // Reverse entire array
         reverse(nums, 0, n - 1);
         // Reverse first k elements
