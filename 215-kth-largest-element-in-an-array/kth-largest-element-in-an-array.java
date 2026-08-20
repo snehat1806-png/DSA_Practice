@@ -16,7 +16,9 @@ class Solution {
             return quickSelect(nums, pivotIndex + 1, high, target);
         }
     }
-    private int partition(int[] nums, int low, int high) {
+    private int partition(int[] nums, int low, int high) {   
+        int randomIndex = low + new Random().nextInt(high - low + 1);
+        swap(nums, randomIndex, high);
         int pivot = nums[high];
         int i = low;
         for (int j = low; j < high; j++) {
