@@ -10,12 +10,16 @@ class Solution {
     //     }
     //     return -1;
     int n=0;
-    int size=0;
+    int c=0;
     for(int i=0;i<nums.length;i++){
-        if(size==0){
+        if(c==0){
           n=nums[i];  
         }
-        size=size+((nums[i]==n)?1:-1);
+        if(nums[i]==n){
+        c++;
+        }else{
+            c--;
+        }
     }
     return n;
     }
