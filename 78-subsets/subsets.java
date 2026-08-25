@@ -1,10 +1,10 @@
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {    
         List<List<Integer>> result = new ArrayList<>();
-        solve(nums, 0, new ArrayList<>(), result);
+        backtrack(nums, 0, new ArrayList<>(), result);
         return result;
     }
-    void solve(int[] nums, int index,
+    void backtrack(int[] nums, int index,
                List<Integer> current,
                List<List<Integer>> result) {
         // Base case
@@ -13,8 +13,8 @@ class Solution {
             return;
         }
         current.add(nums[index]);
-        solve(nums, index + 1, current, result);
+       backtrack(nums, index + 1, current, result);
         current.remove(current.size() - 1);
-        solve(nums, index + 1, current, result); 
+       backtrack(nums, index + 1, current, result); 
     }
 }
