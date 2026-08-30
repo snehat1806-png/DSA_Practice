@@ -1,46 +1,40 @@
 class Solution {
     public List<List<Integer>> fourSum(int[] nums, int target) {
-               int n = nums.length;
-
-        // Used to remove duplicate quadruplets
-        Set<List<Integer>> ansSet = new HashSet<>();
-
-        for (int i = 0; i < n; i++) {
-
-            for (int j = i + 1; j < n; j++) {
-
-                // Stores numbers we have already seen for this i, j
-                Set<Long> hashSet = new HashSet<>();
-
-                for (int k = j + 1; k < n; k++) {
-
-                    long sum = (long) nums[i]
-                             + nums[j]
-                             + nums[k];
-
-                    long fourth = (long) target - sum;
-
-                    // Check if required fourth number was seen
-                    if (hashSet.contains(fourth)) {
-
-                        List<Integer> temp = new ArrayList<>();
-
-                        temp.add(nums[i]);
-                        temp.add(nums[j]);
-                        temp.add(nums[k]);
-                        temp.add((int) fourth);
-
-                        Collections.sort(temp);
-
-                        ansSet.add(temp);
-                    }
-
-                    // Add current number AFTER checking
-                    hashSet.add((long) nums[k]);
-                }
+      int n = nums.length;
+    List<List<Integer>> ansSet=new ArrayList<>();
+     Arrays.sort(nums);
+     for(int i=0;i<nums.length;i++){
+        if(i>0&&nums[i]==nums[i-1]){
+            continue;
+        }
+        for(int j=i+1;j<nums.length;j++){
+            if(j>i+1&&nums[j]==nums[j-1]){
+                continue;
+            }
+            int k=j+1;
+            int l=nums.length-1;
+            while(k<l){
+              long sum=(long)nums[i]+nums[j]+nums[k]+nums[l];
+              if(sum==target){
+             ansSet.add(Arrays.asList(nums[i],nums[j],nums[k],nums[l]));  
+             k++;
+             l--;
+             while(k<l&&nums[k]==nums[k-1]){
+                k++;
+             }
+             while(k<l&&nums[l]==nums[l+1]){
+                l--;
+             }
+              }  
+             else if(sum<target){
+                k++;
+             }else{
+                l--;
+             }
             }
         }
+     }
 
-        return new ArrayList<>(ansSet); 
+        return ansSet;
     }
 }
